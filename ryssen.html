@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RYSSEN — Think different. Build boldly.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101826;
+    --ink-soft:#1c2537;
+    --paper:#F1F0EA;
+    --paper-dim:#e8e6dd;
+    --brass:#B08D3E;
+    --brass-bright:#c9a24f;
+    --slate:#4B5160;
+    --line:#D8D5C8;
+    --line-dark:#2c3547;
+    --teal:#1F3B36;
+    --max:1120px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces',Georgia,serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    line-height:1.1;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(241,240,234,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;max-width:var(--max);margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;
+    letter-spacing:0.02em;
+  }
+  .nav-links{display:flex;gap:36px;align-items:center;}
+  .nav-links a{font-size:0.94rem;color:var(--slate);transition:color .2s ease;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    border:1px solid var(--ink);border-radius:2px;
+    padding:9px 18px;font-size:0.9rem;font-weight:500;
+    transition:background .2s ease,color .2s ease;
+  }
+  .nav-cta:hover{background:var(--ink);color:var(--paper);}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;padding:4px;}
+  .menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:120px 32px 100px;
+    max-width:var(--max);margin:0 auto;
+    display:grid;grid-template-columns:1.4fr 1fr;gap:64px;align-items:end;
+  }
+  .hero-rule{
+    width:64px;height:2px;background:var(--brass);
+    margin-bottom:28px;transform-origin:left;
+    animation:draw .9s cubic-bezier(.4,0,.2,1) both;
+  }
+  @keyframes draw{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+  .hero h1{
+    font-size:clamp(2.6rem,5.6vw,4.4rem);
+    max-width:11ch;
+    opacity:0;animation:rise .8s ease .15s forwards;
+  }
+  .hero-sub{
+    grid-column:1;
+    font-size:1.1rem;color:var(--slate);max-width:46ch;margin-top:26px;
+    opacity:0;animation:rise .8s ease .3s forwards;
+  }
+  .hero-actions{
+    grid-column:1;display:flex;gap:16px;margin-top:38px;
+    opacity:0;animation:rise .8s ease .45s forwards;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+  .btn-primary{
+    background:var(--ink);color:var(--paper);
+    padding:14px 28px;border-radius:2px;font-size:0.95rem;font-weight:500;
+    border:1px solid var(--ink);transition:background .2s ease,transform .15s ease;
+  }
+  .btn-primary:hover{background:var(--ink-soft);}
+  .btn-secondary{
+    padding:14px 26px;border-radius:2px;font-size:0.95rem;font-weight:500;
+    border:1px solid var(--slate);color:var(--ink);
+    transition:border-color .2s ease,background .2s ease;
+  }
+  .btn-secondary:hover{border-color:var(--ink);background:rgba(16,24,38,0.04);}
+
+  .hero-mark{
+    grid-column:2;justify-self:end;align-self:end;
+    width:100%;max-width:280px;aspect-ratio:1/1.15;
+    border:1px solid var(--line);position:relative;
+  }
+  .hero-mark svg{width:100%;height:100%;display:block;}
+
+  /* ---------- About ---------- */
+  .about{
+    border-top:1px solid var(--line);
+    padding:90px 32px;
+  }
+  .about-grid{
+    max-width:var(--max);margin:0 auto;
+    display:grid;grid-template-columns:0.9fr 1.5fr;gap:64px;
+  }
+  .about-grid h2{font-size:clamp(1.8rem,3.4vw,2.6rem);max-width:14ch;}
+  .about-grid p{font-size:1.08rem;color:var(--slate);max-width:56ch;align-self:center;}
+
+  /* ---------- Features ---------- */
+  .features{
+    background:var(--ink);color:var(--paper);
+    padding:100px 32px;
+  }
+  .features-head{max-width:var(--max);margin:0 auto 56px;}
+  .features-head span{
+    color:var(--brass-bright);font-size:0.85rem;letter-spacing:0.04em;
+  }
+  .features-head h2{font-size:clamp(1.8rem,3.4vw,2.4rem);margin-top:12px;max-width:20ch;}
+
+  .feature-row{
+    max-width:var(--max);margin:0 auto;
+    display:grid;grid-template-columns:repeat(3,1fr);
+  }
+  .feature{
+    padding:8px 40px 8px 0;border-left:1px solid var(--line-dark);
+    padding-left:36px;
+  }
+  .feature:first-child{padding-left:0;border-left:none;}
+  .feature svg{width:34px;height:34px;margin-bottom:22px;color:var(--brass-bright);}
+  .feature h3{font-size:1.3rem;font-weight:500;margin-bottom:12px;}
+  .feature p{color:#aeb4c2;font-size:0.98rem;}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    padding:110px 32px;text-align:left;
+    border-bottom:1px solid var(--line);
+  }
+  .cta-inner{max-width:640px;margin:0 auto;text-align:center;}
+  .cta h2{font-size:clamp(2rem,4.2vw,3rem);}
+  .cta p{color:var(--slate);font-size:1.08rem;margin-top:18px;}
+  .cta .btn-primary{margin-top:34px;display:inline-block;}
+
+  /* ---------- Contact ---------- */
+  .contact{padding:100px 32px;}
+  .contact-grid{
+    max-width:var(--max);margin:0 auto;
+    display:grid;grid-template-columns:0.85fr 1.15fr;gap:72px;
+  }
+  .contact-info h2{font-size:clamp(1.8rem,3.2vw,2.3rem);max-width:12ch;}
+  .contact-info p{color:var(--slate);margin-top:16px;max-width:34ch;}
+  .contact-detail{margin-top:36px;}
+  .contact-detail div{margin-bottom:14px;font-size:0.98rem;}
+  .contact-detail span{display:block;color:var(--slate);font-size:0.82rem;margin-bottom:4px;}
+
+  form{display:flex;flex-direction:column;gap:20px;}
+  label{font-size:0.85rem;color:var(--slate);margin-bottom:7px;display:block;}
+  input,textarea{
+    width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);
+    padding:10px 2px;font-family:'Inter',sans-serif;font-size:1rem;color:var(--ink);
+    transition:border-color .2s ease;
+  }
+  input:focus,textarea:focus{outline:none;border-bottom-color:var(--brass);}
+  textarea{resize:vertical;min-height:90px;}
+  .form-submit{
+    align-self:flex-start;margin-top:8px;
+    background:var(--ink);color:var(--paper);border:1px solid var(--ink);
+    padding:13px 30px;border-radius:2px;font-size:0.95rem;font-weight:500;cursor:pointer;
+    transition:background .2s ease;
+  }
+  .form-submit:hover{background:var(--ink-soft);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink);color:#8b93a5;
+    padding:44px 32px;
+  }
+  .footer-inner{
+    max-width:var(--max);margin:0 auto;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  }
+  .footer-brand{color:var(--paper);font-family:'Fraunces',serif;font-size:1.1rem;}
+  .footer-tag{font-size:0.88rem;margin-top:4px;color:#8b93a5;}
+  .footer-inner p{font-size:0.85rem;}
+
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
+    outline:2px solid var(--brass);outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero-rule,.hero h1,.hero-sub,.hero-actions{animation:none;opacity:1;transform:none;}
+  }
+
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .menu-btn{display:block;}
+    .hero{grid-template-columns:1fr;padding-top:80px;}
+    .hero-mark{display:none;}
+    .about-grid{grid-template-columns:1fr;gap:28px;}
+    .feature-row{grid-template-columns:1fr;row-gap:40px;}
+    .feature{border-left:none;padding-left:0;padding-top:28px;border-top:1px solid var(--line-dark);}
+    .feature:first-child{border-top:none;padding-top:0;}
+    .contact-grid{grid-template-columns:1fr;gap:48px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">RYSSEN</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+      <a href="#join" class="nav-cta">Get Started</a>
+    </div>
+    <button class="menu-btn" aria-label="Menu" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display==='flex'?'none':'flex'">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="hero-rule"></div>
+    <h1>Welcome to RYSSEN</h1>
+    <p class="hero-sub">A place where creativity, community, and ambition come together. Discover new ideas, connect with people, and build something that matters.</p>
+    <div class="hero-actions">
+      <a href="#join" class="btn-primary">Get Started</a>
+      <a href="#about" class="btn-secondary">Explore RYSSEN</a>
+    </div>
+  </div>
+  <div class="hero-mark">
+    <svg viewBox="0 0 200 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="80" r="46" stroke="#B08D3E" stroke-width="1.4"/>
+      <line x1="100" y1="34" x2="100" y2="8" stroke="#101826" stroke-width="1.4"/>
+      <line x1="100" y1="126" x2="100" y2="200" stroke="#101826" stroke-width="1.4"/>
+      <line x1="54" y1="80" x2="14" y2="80" stroke="#101826" stroke-width="1.4"/>
+      <line x1="146" y1="80" x2="186" y2="80" stroke="#101826" stroke-width="1.4"/>
+      <circle cx="100" cy="80" r="6" fill="#101826"/>
+    </svg>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-grid">
+    <h2>Built for those who think differently.</h2>
+    <p>RYSSEN is more than a platform. It's a growing community for people who want to explore ideas, create, connect, and carve their own path.</p>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="features-head">
+    <span>What you'll find here</span>
+    <h2>Three ways to move your ambition forward.</h2>
+  </div>
+  <div class="feature-row">
+    <div class="feature">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9.5"/><path d="M15.5 8.5l-2.2 5.2-5.3 2.1 2.2-5.2 5.3-2.1z"/></svg>
+      <h3>Discover</h3>
+      <p>Explore interesting ideas, communities, projects, and opportunities.</p>
+    </div>
+    <div class="feature">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="7.5" cy="9" r="3.2"/><circle cx="16.5" cy="15" r="3.2"/><path d="M9.8 10.8l4 2.6"/></svg>
+      <h3>Connect</h3>
+      <p>Meet people with different perspectives and build meaningful connections.</p>
+    </div>
+    <div class="feature">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 20l3.2-1 9-9-2.2-2.2-9 9-1 3.2z"/><path d="M13.4 6.6l2.2 2.2"/><path d="M16 4l1.6 1.6L16 7.2 14.4 5.6z"/></svg>
+      <h3>Create</h3>
+      <p>Turn your ideas into something tangible and share them with the world.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="join">
+  <div class="cta-inner">
+    <h2>Your next chapter starts here.</h2>
+    <p>There's always something new to discover, someone new to meet, and something new to build.</p>
+    <a href="#contact" class="btn-primary">Join RYSSEN</a>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h2>Get in touch.</h2>
+      <p>Have a question about the platform? Send a message and we'll get back to you.</p>
+      <div class="contact-detail">
+        <div><span>Email</span>abdulrahmanhazan517@gmail.com</div>
+        <div><span>Phone</span>+234 816 144 5694</div>
+      </div>
+    </div>
+    <form id="contactForm">
+      <div>
+        <label for="name">Name</label>
+        <input id="name" type="text" value="ABDULRAHMAN Hassan" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" type="email" value="abdulrahmanhazan517@gmail.com" required>
+      </div>
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" required>Hey RYSSEN, I'd like to know more about the platform.</textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">RYSSEN</div>
+      <div class="footer-tag">Think different. Build boldly.</div>
+    </div>
+    <p>© 2026 RYSSEN. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var message = document.getElementById('message').value;
+    var subject = encodeURIComponent('Message from ' + name + ' via RYSSEN');
+    var body = encodeURIComponent(message + '\n\nFrom: ' + name + ' (' + email + ')');
+    window.location.href = 'mailto:abdulrahmanhazan517@gmail.com?subject=' + subject + '&body=' + body;
+  });
+</script>
+
+</body>
+</html>
